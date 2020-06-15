@@ -13,6 +13,6 @@ Frontend project is made with Angular 9.x and backend is built in Spring Boot. F
     <version>1.0.3</version>
 </dependency>
 ```
-### Frontend Screenshot:-
+## Frontend Screenshot:-
 ![Italy](https://user-images.githubusercontent.com/44796715/84714894-9ba84580-af8c-11ea-9312-4e98fd89b206.PNG)
 
