@@ -25,7 +25,7 @@
         style="width: 100%;"
         mat-raised-button color="primary"
         type="submit"
-        [disabled]="!f.valid">
+        [disabled]="!f.valid || fetching">
         Fetch Covid-19 Stats
       </button>
 

@@ -10,6 +10,7 @@ import {CovidService, CovidStats} from '../covid.service';
 })
 export class Covid19Component implements OnInit {
   covidStats: CovidStats;
+  fetching = false;
 
   constructor(private http: HttpClient, private covidService: CovidService) {
   }
@@ -19,10 +20,13 @@ export class Covid19Component implements OnInit {
 
   onSubmit(form: NgForm) {
     const value = form.value;
+    this.fetching = true;
     this.covidService.fetchCovidStats(value.name, value.inputType)
       .subscribe(response => {
         this.covidStats = response;
+        this.fetching = false;
       }, error => {
+        this.fetching = false;
       });
   }
 }
