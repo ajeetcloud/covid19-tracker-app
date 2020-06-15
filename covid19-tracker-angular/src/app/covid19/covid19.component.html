@@ -1,0 +1,60 @@
+<br><br><br>
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+
+
+  <div fxFlex="25%">
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+
+      <mat-form-field class="example-full-width">
+        <input matInput
+               placeholder="Enter Country/State/City"
+               type="text"
+               name="name"
+               ngModel
+               required>
+      </mat-form-field>&nbsp;&nbsp;
+      <mat-form-field>
+        <mat-label>Input Type</mat-label>
+        <mat-select required ngModel name="inputType">
+          <mat-option value="country">Country</mat-option>
+          <mat-option value="cityState">City/State</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button
+        style="width: 100%;"
+        mat-raised-button color="primary"
+        type="submit"
+        [disabled]="!f.valid">
+        Fetch Covid-19 Stats
+      </button>
+
+    </form>
+    <br>
+
+    <mat-card *ngIf="!covidStats">
+      <mat-card-header>
+        <mat-card-title *ngIf="!covidStats">No Data Fetched Yet!</mat-card-title>
+      </mat-card-header>
+    </mat-card>
+
+    <mat-card *ngIf="covidStats">
+      <mat-card-header>
+        <mat-card-title>Covid-19 Stats for {{covidStats.name}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div>Confirmed Cases: {{covidStats.confirmed}}</div>
+        <div style="color: green">Recovered Cases: {{covidStats.recovered}}</div>
+        <div style="color: red">Deaths: {{covidStats.deaths}}</div>
+        <div *ngIf="covidStats.confirmedNewCases!='' && covidStats.confirmedNewDeaths!=''">
+          <div>&nbsp;</div>
+          In last 24 hours:-
+        </div>
+        <div *ngIf="covidStats.confirmedNewCases!=''">Confirmed New Cases: {{covidStats.confirmedNewCases}}</div>
+        <div *ngIf="covidStats.confirmedNewDeaths!=''">Confirmed New Deaths: {{covidStats.confirmedNewDeaths}}</div>
+        <div>&nbsp;</div>
+        <div>**{{covidStats.lastUpdated}}</div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
