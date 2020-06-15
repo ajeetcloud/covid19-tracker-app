@@ -21,7 +21,6 @@ export class CovidService {
   }
 
   fetchCovidStats(name: string, inputType: string) {
-    console.log('hello');
     if (inputType === 'country') {
       return this.httpClient.get<CovidStats>(
         'http://localhost:8080/getCovidDataByCountry/' + name,
